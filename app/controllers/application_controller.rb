@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    @home = true
     if !session[:id] 
       redirect to '/login'
     end
@@ -68,6 +69,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/workouts' do 
+    @workout = true
     redirect to '/login' if !session[:id]
 
     @workouts = Workout.all
@@ -84,6 +86,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/workouts/:id' do 
+    @workout = true
     redirect to '/login' if !session[:id]
     @workout = Workout.find(params[:id])
     @workouts = Workout.all
@@ -91,6 +94,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/exercises' do 
+    @exercise = true
     redirect to '/login' if !session[:id]
 
     @exercises = Exercise.all
@@ -114,6 +118,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/exercises/:id' do 
+    @exercises = true
     redirect to '/login' if !session[:id]
     @exercise = Exercise.find(params[:id])
     erb :'/exercises/show'
