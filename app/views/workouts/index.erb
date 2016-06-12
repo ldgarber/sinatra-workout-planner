@@ -1,0 +1,25 @@
+<h1>Workouts</h1>
+
+<div>
+<% @workouts.each do |workout| %>
+  Name: <a href="/workouts/<%=workout.id%>"><%= workout.name %></a>
+  <% if workout.type %>
+    <%= workout.type %>
+  <% end %>
+  <br>
+<% end %>
+</div>
+
+<div>
+<h2>Create a workout</h2>
+<form action="/workouts" method="post">
+  <p>Name: <input type="text" name="workout[name]"></p>
+  <p>Choose the exercises in this workout!</p>
+    <% @exercises.each do |exercise| %>
+      <input type="checkbox" name="workout[exercise_ids][]" value="<%=exercise.id%>" id="<%=exercise.name%>"><%= exercise.name %></input>
+    <%end%> 
+    <input type="submit" value="Create workout">
+</form>
+</div>
+
+<a href="/exercises">Don't see the exercise you're looking for? Add it to the site!</a>

@@ -1,0 +1,18 @@
+<h1><%= @exercise.name %></h1>
+<%= @exercise.description %>
+
+<div>
+  <h2>Requires: </h2>
+  <% @exercise.items.each do |item| %>
+    <%= item.name %><br>
+  <% end %>
+</div>
+
+<div>
+  <% if !@exercise.workouts.empty? %>
+    <h2>Try it in one of these workouts: </h2>
+    <% @exercise.workouts.each do |workout| %>
+      <a href='/workouts/<%=workout.id%>'><%=workout.name%></a>
+    <% end%>
+  <% end %>
+</div>

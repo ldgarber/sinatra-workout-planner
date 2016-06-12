@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+  
+    <% if session[:id] %>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/workouts">Workouts</a></li>
+        <li role="presentation"><a href="/exercises">Exercises</a></li>
+        <li role="presentation"><a href="/logout">Log Out</a></li>
+      </ul>
+    <% end %> 
+
+    <%= yield %>
+    
+
+  </body>
+</html>

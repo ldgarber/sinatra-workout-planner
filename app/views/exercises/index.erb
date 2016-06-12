@@ -1,0 +1,24 @@
+<div>
+  <h1>Exercises</h1>
+  <% @exercises.each do |e| %>
+    Name: <a href="/exercises/<%=e.id%>"><%= e.name %></a>
+    <% if e.description %>
+      <%= e.description %>
+    <% end %>
+    <br>
+  <% end %> 
+</div>
+
+<div>
+  <h2>Create a new exercise</h2>
+  <form action="/exercises" method="post">
+    <p>Name: <input type="text" name="exercise[name]"></p>
+    <p>Description: <textarea name="exercise[description]"></textarea></p>
+    <p>Equipment? Click it</p>
+      <% @items.each do |item| %>
+        <input type="checkbox" name="exercise[item_ids][]" value="<%=item.id%>" id="<%=item.name%>"><%= item.name %></input>
+      <%end%>  
+      <p>Other equipment: <input type="text" name="item_name"></input>
+      <input type="submit" value="Create exercise">
+  </form>
+</div>

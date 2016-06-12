@@ -1,0 +1,8 @@
+<h1>Welcome, <%=@user.username.upcase%>, you <%=@adjective%> <%=@noun%>.</h1>
+
+<h1>Get to work: </h1>
+<h2><a href="/workouts">Pick a workout</a></h2>
+
+<% if !@workouts.empty? %>
+  <h2><a href="/workouts/<%=@workouts.sample.id%>">Randomize me, cap'n!</a></h2>
+<% end %>

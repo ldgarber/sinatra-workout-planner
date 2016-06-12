@@ -1,0 +1,13 @@
+<h1>Welcome back bro.</h1>
+
+<% if flash.has? :message %>
+  <%= flash[:message] %>
+<% end %>
+
+<form action="/login" method="post">
+  <h2>Username: <input type="text" name="username"></input></h2>
+  <h2>Password: <input type="password" name="password"></input></h2>
+  <input type="submit" value="submit">
+</form>
+
+<p>Not a member? <a href='/signup'>Sign up here</a></p>
