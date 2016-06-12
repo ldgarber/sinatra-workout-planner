@@ -1,10 +1,11 @@
 <div>
   <h1>Exercises</h1>
   <% @exercises.each do |e| %>
-    Name: <a href="/exercises/<%=e.id%>"><%= e.name %></a>
+    <h3><a href="/exercises/<%=e.id%>"><%= e.name %></a></h3>
     <% if e.description %>
-      <%= e.description %>
+      <p> <%= e.description %>
     <% end %>
+    <br>
     <br>
   <% end %> 
 </div>
