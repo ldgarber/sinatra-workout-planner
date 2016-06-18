@@ -1,0 +1,13 @@
+<h1>Edit <%= @workout.name %></h1>
+<div>
+  <form action="/workouts/<%=@workout.id%>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <p>Name: <input type="text" name="workout[name]"></p>
+    <p>Choose the exercises in this workout!</p>
+      <% @exercises.each do |exercise| %>
+        <input type="checkbox" name="workout[exercise_ids][]" value="<%=exercise.id%>" id="<%=exercise.name%>" <%='checked' if @workout.exercises.include? exercise %>><%= exercise.name %></input>
+      <%end%> 
+    <input type="submit" value="Save workout">
+  </form>
+</div>
+<a href="/workouts/<%= @workout.id %>">Cancel</a>

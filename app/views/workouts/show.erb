@@ -1,4 +1,11 @@
 <h1><%= @workout.name %></h1>
+<div>
+  <% if session[:id] == @workout.user_id %>
+    <a href="/workouts/<%=@workout.id%>/edit">Edit Workout</a><br>
+    <a href="/workouts/<%=@workout.id%>/delete">Delete Workout</a>
+  <% end %> 
+</div>
+
 <h2>Exercises: </h2>
   <% @workout.exercises.each_with_index do |exercise, i| %>
     <%= i+1 %>. Name: <%= exercise.name %><br>

@@ -116,11 +116,26 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/workouts/:id' do 
-    @workout = true
     redirect to '/login' if !session[:id]
     @workout = Workout.find(params[:id])
     @workouts = Workout.all
     erb :'/workouts/show' 
+  end
+
+  get '/workouts/:id/edit' do 
+    @workout = Workout.find(params[:id])
+    @exercises = Exercise.all
+    @items = Item.all
+    if session[:id] != @workout.user_id
+      redirect to "/workouts/#{params[:id]}"
+    end
+    erb :'/workouts/edit' 
+  end
+
+  patch '/workouts/:id' do 
+    @workout = Workout.find(params[:id])
+    @workout.update(params[:workout])
+    redirect to "/workouts/#{params[:id]}" 
   end
 
   get '/exercises' do 
