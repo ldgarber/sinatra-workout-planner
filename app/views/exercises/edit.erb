@@ -1,0 +1,19 @@
+<h1><%= @exercise.name %></h1>
+
+<br><%= @exercise.description %>
+<div>
+  <form action="/exercises/<%=@exercise.id%>" method="post">
+    <input type="hidden" name="_method" value="patch">
+
+    <p>Edit Name: <input type="text" name="exercise[name]"></p>
+    <p class="formfield"> Edit Description: <textarea name="exercise[description]"></textarea></p>
+    <p>Edit equipment: </p>
+      <% @items.each do |item| %>
+        <input type="checkbox" <%= 'checked' if @exercise.items.include? item%> name="exercise[item_ids][]" value="<%=item.id%>" id="<%=item.name%>"><%= item.name %></input>
+      <%end%>  
+      <p>Other equipment: <input type="text" name="item_name" placeholder="Use commas to separate"></input>
+      <input type="submit" value="Save exercise">
+  </form>
+</div>
+
+<a href="/exercises/<%=@exercise.id%>">Cancel</a>
