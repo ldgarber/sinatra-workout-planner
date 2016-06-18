@@ -80,6 +80,7 @@ class ApplicationController < Sinatra::Base
   post '/workouts' do 
     redirect to '/login' if !session[:id] 
 
+    flash[:message] = nil 
     @user = User.find(session[:id])
     @user.workouts << Workout.create(params[:workout]) 
     redirect to '/workouts'
@@ -94,17 +95,22 @@ class ApplicationController < Sinatra::Base
     @workouts = Workout.all
     @items = []
 
-    params[:item_ids].each do |item|
-      @items << Item.find(item)
+    if params[:item_ids] 
+      params[:item_ids].each do |item|
+        @items << Item.find(item)
+      end
     end
     @results = []
     @workouts.each do |workout|
-      if @items.include? workout.items
+      if (workout.items - @items).empty?
         @results << workout
       end
     end
 
     @exercises = Exercise.all  
+    if @results.empty? 
+      flash[:message] = "No workouts found, try adding equipment or create your own workout below"
+    end
     @workouts = @results
     erb :'/workouts/index'
   end

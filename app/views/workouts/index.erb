@@ -1,5 +1,9 @@
 <h1>Workouts</h1>
 
+<% if flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
+
 <div>
 <% @workouts.each do |workout| %>
   Name: <a href="/workouts/<%=workout.id%>"><%= workout.name %></a>
