@@ -19,7 +19,7 @@
       <% @items.each do |item| %>
         <input type="checkbox" name="exercise[item_ids][]" value="<%=item.id%>" id="<%=item.name%>"><%= item.name %></input>
       <%end%>  
-      <p>Other equipment: <input type="text" name="item_name"></input>
+      <p>Other equipment: <input type="text" name="item_name" placeholder="Use commas to separate"></input>
       <input type="submit" value="Create exercise">
   </form>
 </div>

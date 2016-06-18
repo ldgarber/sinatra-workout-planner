@@ -1,0 +1,9 @@
+<div>
+  <h2>Equipment you have available:</h2>
+  <form action="/workouts/find" method="post">
+    <% @items.each do |item| %>
+      <input type="checkbox" name="item_ids[]" value="<%=item.id%>" id="<%=item.name%>"><%= item.name %></input>
+    <%end%>  
+    <input type="submit" value="Find workouts">
+  </form>
+</div>

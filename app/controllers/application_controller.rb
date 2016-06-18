@@ -84,6 +84,30 @@ class ApplicationController < Sinatra::Base
     @user.workouts << Workout.create(params[:workout]) 
     redirect to '/workouts'
   end
+  
+  get '/workouts/find' do 
+    @items = Item.all
+    erb :'/workouts/find' 
+  end
+
+  post '/workouts/find' do 
+    @workouts = Workout.all
+    @items = []
+
+    params[:item_ids].each do |item|
+      @items << Item.find(item)
+    end
+    @results = []
+    @workouts.each do |workout|
+      if @items.include? workout.items
+        @results << workout
+      end
+    end
+
+    @exercises = Exercise.all  
+    @workouts = @results
+    erb :'/workouts/index'
+  end
 
   get '/workouts/:id' do 
     @workout = true
