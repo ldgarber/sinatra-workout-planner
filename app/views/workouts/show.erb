@@ -2,7 +2,6 @@
 <div>
   <% if session[:id] == @workout.user_id %>
     <a href="/workouts/<%=@workout.id%>/edit">Edit Workout</a><br>
-    <a href="/workouts/<%=@workout.id%>/delete">Delete Workout</a>
   <% end %> 
 </div>
 
